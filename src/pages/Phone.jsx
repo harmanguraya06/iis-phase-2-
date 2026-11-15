@@ -1,10 +1,19 @@
 import {useState} from "react";
+import {Video, CircleX, UserRoundCheck, CircleCheck, HeartHandshake} from "lucide-react";
 import {notifications} from "../data/dummyNotifications";
 
 function Phone () {
     const dummyNotifications = notifications;
     const [expandedNotification, setExpandedNotification] = useState(null);
 
+    const actionOptions = {
+        "Live feed" : Video,
+        "Dismiss" : CircleCheck,
+        "Mark as incorrect" : CircleX,
+        "Add as known visitor" : UserRoundCheck,
+        "Urgent help" : HeartHandshake
+    };
+    
     const userClick = (notificationId) => {
         setExpandedNotification(notificationId === expandedNotification ? null : notificationId);
     };
@@ -50,10 +59,6 @@ function Phone () {
                         return (
                             <div className="expandedNotification">
 
-                                <button onClick={() => setExpandedNotification(null)}>
-                                    Close
-                                </button>
-
                                 <h3>Visitor: {notification.visitor || "Unknown"} </h3>
 
                                 {notification.image && (
@@ -62,9 +67,28 @@ function Phone () {
 
                                 {notification.confidence != null && (<p>Confidence: {notification.confidence}%</p>)}
 
-                                {notification.reason && (<p>Reason: {notification.reason}</p>)}
+                                {notification.reason && (<p className="reason">{notification.reason}</p>)}
 
-                                <p>Actions: {notification.actions.join(", ")}</p>
+                                <div className="actions">
+                                    <div className="actionButtons">
+                                        {notification.actions.map((action, index) => {
+                                            const Icon = actionOptions[action];
+
+                                            return (
+                                                <button key={index} className="actionButton"
+                                                    onClick={() => {
+                                                        if (action === "Dismiss") {
+                                                            setExpandedNotification(null);
+                                                        }
+                                                    }}
+                                                >
+                                                    {Icon && <Icon size={24} strokeWidth={1.8} />}
+                                                    <span>{action}</span>
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
                             </div>
                         );
                     })()}

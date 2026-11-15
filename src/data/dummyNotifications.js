@@ -20,9 +20,9 @@ export const notifications = [
         message: "We do not know the visitor at your door",
         timestamp: "2026-06-01T11:00:00Z",
         confidence: null,
-        reason: null,
+        reason: "The visitor is not in your known visitors list",
         image: "src/assets/unknown.jpg",
-        actions: ["Live feed", "Dismiss", "Mark as incorrect, Add as known visitor)"],
+        actions: ["Live feed", "Dismiss", "Mark as incorrect", "Add as known visitor", "Urgent help"],
     },
     
     // incorrect identification
@@ -35,7 +35,7 @@ export const notifications = [
         confidence: 33,
         reason: "Our confidence is lower than usual",
         image: "src/assets/diljot.jpg", 
-        actions: ["Live feed", "Dismiss", "Mark as incorrect"],
+        actions: ["Live feed", "Dismiss", "Mark as incorrect", "Urgent help"],
     },
     
     // failed identification
@@ -48,6 +48,6 @@ export const notifications = [
         confidence: null,
         reason: "The face is obstructed or the image is not clear enough",
         image: "src/assets/failed.jpg", 
-        actions: ["Live feed", "Dismiss"],
+        actions: ["Live feed", "Dismiss", "Urgent help"],
     }
 ];
