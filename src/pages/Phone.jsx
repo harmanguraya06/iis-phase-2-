@@ -1,10 +1,14 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+
 import {Video, CircleX, UserRoundCheck, CircleCheck, HeartHandshake} from "lucide-react";
+
 import {notifications} from "../data/dummyNotifications";
 
 function Phone () {
     const dummyNotifications = notifications;
     const [expandedNotification, setExpandedNotification] = useState(null);
+    const navigate = useNavigate();
 
     const actionOptions = {
         "Live feed" : Video,
@@ -16,6 +20,28 @@ function Phone () {
     
     const userClick = (notificationId) => {
         setExpandedNotification(notificationId === expandedNotification ? null : notificationId);
+    };
+
+    const userAction = (action) => {
+        switch (action) {
+            case "Dismiss":
+                setExpandedNotification(null);
+                break;
+            case "Live feed":
+                navigate("/liveFeed");
+                break;
+            case "Mark as incorrect":
+                navigate("/identityCorrection");
+                break;
+            case "Add as known visitor":
+                navigate("/addVisitor");
+                break;
+            case "Urgent help":
+                alert("Your emergecy contact has been notified!");
+                break;
+            default:
+                break;
+        }
     };
 
     return (
@@ -75,13 +101,7 @@ function Phone () {
                                             const Icon = actionOptions[action];
 
                                             return (
-                                                <button key={index} className="actionButton"
-                                                    onClick={() => {
-                                                        if (action === "Dismiss") {
-                                                            setExpandedNotification(null);
-                                                        }
-                                                    }}
-                                                >
+                                                <button key={index} className="actionButton" onClick={() => {userAction(action);}}>
                                                     {Icon && <Icon size={24} strokeWidth={1.8} />}
                                                     <span>{action}</span>
                                                 </button>
