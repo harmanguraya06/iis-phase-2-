@@ -19,23 +19,23 @@ export const notifications = [
         visitor: "Unknown",
         message: "We do not know the visitor at your door",
         timestamp: "2026-06-01T11:00:00Z",
-        confidence: null,
+        confidence: 22,
         reason: "The visitor is not in your known visitors list",
         image: "src/assets/unknown.jpg",
         actions: ["Live feed", "Dismiss", "Mark as incorrect", "Add as known visitor", "Urgent help"],
     },
     
-    // incorrect identification
+    // low confidence identification
     {
         id: 3,
         type: "incorrect",
         visitor: "Diljot",
         message: "Diljot could be at your door",
         timestamp: "2026-06-01T12:00:00Z",
-        confidence: 33,
+        confidence: 66,
         reason: "Our confidence is lower than usual",
         image: "src/assets/diljot.jpg", 
-        actions: ["Live feed", "Dismiss", "Mark as incorrect", "Urgent help"],
+        actions: ["Live feed", "Dismiss", "Mark as incorrect", "Add as known visitor", "Urgent help"],
     },
     
     // failed identification
@@ -48,6 +48,6 @@ export const notifications = [
         confidence: null,
         reason: "The face is obstructed or the image is not clear enough",
         image: "src/assets/failed.jpg", 
-        actions: ["Live feed", "Dismiss", "Urgent help"],
+        actions: ["Live feed", "Dismiss", "Urgent help", "Add as known visitor"],
     }
 ];
