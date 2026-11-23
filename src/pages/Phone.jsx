@@ -10,6 +10,8 @@ function Phone () {
     
     const [expandedNotification, setExpandedNotification] = useState(null);
 
+    const [urgentHelp, setUrgentHelp] = useState(false);
+
     const navigate = useNavigate();
 
     const actionOptions = {
@@ -39,7 +41,7 @@ function Phone () {
                 navigate("/addVisitor", {state: {visitorImage: notification.image}});
                 break;
             case "Urgent help":
-                alert("Your emergecy contact has been notified!");
+                setUrgentHelp(true);
                 break;
             default:
                 break;
@@ -114,6 +116,18 @@ function Phone () {
                             </div>
                         );
                     })()}
+                </div>
+            )}
+
+            {urgentHelp && (
+                <div className="notificationPopup">
+                    <h3>Help requested</h3>
+
+                    <p>Your emergency contact has been sent the visitor information.</p>
+
+                    <p>If you are in an emergency or feel unsafe, do not hesitate and call 999.</p>
+
+                    <button onClick={() => setUrgentHelp(false)}>Return to home</button>
                 </div>
             )}
 
