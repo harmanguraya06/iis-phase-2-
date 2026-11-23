@@ -24,7 +24,7 @@ function Phone () {
         setExpandedNotification(notificationId === expandedNotification ? null : notificationId);
     };
 
-    const userAction = (action) => {
+    const userAction = (action, notification) => {
         switch (action) {
             case "Dismiss":
                 setExpandedNotification(null);
@@ -36,7 +36,7 @@ function Phone () {
                 navigate("/identityCorrection");
                 break;
             case "Add as known visitor":
-                navigate("/addVisitor");
+                navigate("/addVisitor", {state: {visitorImage: notification.image}});
                 break;
             case "Urgent help":
                 alert("Your emergecy contact has been notified!");
@@ -103,7 +103,7 @@ function Phone () {
                                             const Icon = actionOptions[action];
 
                                             return (
-                                                <button key={index} className="actionButton" onClick={() => {userAction(action);}}>
+                                                <button key={index} className="actionButton" onClick={() => {userAction(action, notification);}}>
                                                     {Icon && <Icon size={24} strokeWidth={1.8} />}
                                                     <span>{action}</span>
                                                 </button>
