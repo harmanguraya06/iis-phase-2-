@@ -7,7 +7,9 @@ import {notifications} from "../data/dummyNotifications";
 
 function Phone () {
     const dummyNotifications = notifications;
+    
     const [expandedNotification, setExpandedNotification] = useState(null);
+
     const navigate = useNavigate();
 
     const actionOptions = {
@@ -114,6 +116,7 @@ function Phone () {
                     })()}
                 </div>
             )}
+
         </div>
     );
 }
