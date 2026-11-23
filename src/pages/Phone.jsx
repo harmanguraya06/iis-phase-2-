@@ -49,6 +49,9 @@ function Phone () {
     };
 
     return (
+        <>
+        <p className="note"> Notification information, images and functionality is simulated.</p>
+
         <div className="phone">
             <h1>16:45</h1>
 
@@ -64,14 +67,21 @@ function Phone () {
                     className={`notification ${notification.type}`}
                     >
 
-                        <button className="banner"
-                            onClick={() => userClick(notification.id)}
-                        >
+                        <button className="banner" onClick={() => userClick(notification.id)}>
 
-                            <p>{new Date(notification.timestamp).toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})}</p>
+                            {notification.image && (
+                                <img
+                                    src={notification.image}
+                                    alt="Visitor"
+                                    className="xSmallVisitorPhoto"
+                                />
+                            )}
 
-                            <p>{notification.message}</p>
+                            <div className="notificationText">
+                                <p>{notification.message}</p>
 
+                                <p>{new Date(notification.timestamp).toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})}</p>
+                            </div>
                         </button>
                     </div>
                 ))}    
@@ -132,6 +142,7 @@ function Phone () {
             )}
 
         </div>
+        </>
     );
 }
 

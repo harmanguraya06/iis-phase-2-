@@ -8,6 +8,15 @@ body {
     font-family: Arial;
     background: white;
     color: #000000;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.note {
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 10px;
 }
 
 .phone {
@@ -52,25 +61,41 @@ body {
 .notification {
     overflow: hidden;
     border-radius: 15px;
-    background: white;
+    background: #f9f7f3;
     color: #172033;
 }
 
 .banner {
     width: 100%;
-    padding: 13px 15px;
+    padding: 10px;
     border: none;
     background: transparent;
     text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.banner p {
-    margin: 4px 0;
-    font-size: 13px;
+.xSmallVisitorPhoto {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-shrink: 0;
 }
 
-.banner p:nth-child(2) {
-    font-size: 15px;
+.notificationText {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    min-width: 0;
+}
+
+.notificationText p {
+    margin: 0;
+    font-size: 14px;
+    text-align: left;
 }
 
 .banner:hover {
